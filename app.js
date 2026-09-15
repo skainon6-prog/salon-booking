@@ -627,6 +627,20 @@ function initEventListeners() {
         renderAppointmentsTable(e.target.value);
     });
 
+    // Refresh Bookings from Supabase
+    document.getElementById('refreshBookingsBtn').addEventListener('click', async () => {
+        const btn = document.getElementById('refreshBookingsBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> جاري التحديث...';
+
+        await loadAppointmentsFromSupabase();
+        renderAppointmentsTable();
+
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-sync-alt"></i> تحديث المواعيد من السحابة';
+        alert('✅ تم تحديث المواعيد من قاعدة البيانات السحابية!');
+    });
+
     // Clear Cancelled/Old
     document.getElementById('clearCancelledBtn').addEventListener('click', () => {
         if (confirm('هل ترغبين في حذف المواعيد الملغاة أو القديمة لتنظيم الجدول؟')) {
