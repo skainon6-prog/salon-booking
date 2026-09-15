@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
 
@@ -19,8 +20,20 @@
 
     <!-- Header / Hero Section -->
     <header class="hero">
+        <!-- Background Hair Images (Decorative) - ALL 4 positioned in hero -->
+        <div class="bg-hair bg-hair-1"></div>
+        <div class="bg-hair bg-hair-2"></div>
+        <div class="bg-hair bg-hair-3"></div>
+        <div class="bg-hair bg-hair-4"></div>
+
         <div class="hero-overlay"></div>
         <div class="container hero-content">
+            <div class="brand-logo">
+                <div class="logo-text-wrap">
+                    <span class="logo-name">Aya</span>
+                    <span class="logo-sub">✦ صالون آية ✦</span>
+                </div>
+            </div>
             <div class="brand-badge">
                 <i class="fas fa-gem"></i> Home Hair & Beauty Studio
             </div>
@@ -40,8 +53,7 @@
         </div>
     </header>
 
-    <main class="container main-content">
-
+    <main class="container main-content" style="position: relative;">
         <!-- Services Section -->
         <section class="section" id="servicesSection">
             <div class="section-title-wrap">
@@ -177,8 +189,8 @@
             </div>
         </section>
 
-        <!-- Admin / Mom's Management Dashboard -->
-        <section class="section admin-section" id="adminSection">
+        <!-- Admin / Mom's Management Dashboard (Hidden) -->
+        <section class="section admin-section" id="adminSection" style="display: none;">
             <div class="admin-top-bar">
                 <div class="admin-title">
                     <i class="fas fa-user-shield"></i>
@@ -193,7 +205,6 @@
             </div>
 
             <div class="admin-body" id="adminBody" style="display: none;">
-                <!-- PIN Prompt if locked -->
                 <div class="admin-nav-tabs">
                     <button class="admin-tab active" data-tab="listTab"><i class="fas fa-list-ul"></i> جدول المواعيد المحجوزة</button>
                     <button class="admin-tab" data-tab="settingsTab"><i class="fas fa-sliders-h"></i> إعدادات الأوقات والإجازات</button>
@@ -349,6 +360,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://api.whatsapp.com/send?phone=963982490737" target="_blank" class="whatsapp-float" title="تواصلي معنا عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script src="app.js"></script>
 </body>

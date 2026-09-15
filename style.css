@@ -72,9 +72,9 @@ body {
     position: relative;
     background: radial-gradient(circle at 70% 30%, #522d4a 0%, #351a2f 60%, #241020 100%);
     color: #ffffff;
-    padding: 70px 20px 80px;
+    padding: 40px 20px 50px;
     text-align: center;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .hero-overlay {
@@ -89,6 +89,51 @@ body {
     z-index: 2;
     max-width: 780px;
 }
+
+.brand-logo {
+    margin-bottom: 24px;
+    display: block;
+    text-align: center;
+}
+
+.logo-text-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 18px 40px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 40px rgba(184, 98, 125, 0.3);
+}
+
+.logo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.5), 0 2px 10px rgba(0,0,0,0.3);
+    line-height: 1;
+}
+
+.logo-sub {
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #f5c6d5;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px rgba(245, 198, 213, 0.6);
+}
+
+@media (max-width: 768px) {
+    .logo-name { font-size: 2.5rem; }
+    .logo-text-wrap { padding: 14px 28px; }
+}
+
 
 .brand-badge {
     display: inline-flex;
@@ -787,6 +832,80 @@ body {
 
 .btn-confirm-sm {
     background: var(--secondary);
+    color: white;
+}
+
+.btn-confirm-sm:hover {
+    background: var(--secondary-light);
+}
+
+/* Admin PIN Protection */
+.admin-pin-prompt {
+    background: white;
+    border: 2px solid var(--primary-border);
+    border-radius: var(--radius-md);
+    padding: 40px 30px;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.pin-lock-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--primary-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.pin-lock-icon i {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.admin-pin-prompt h3 {
+    font-size: 1.4rem;
+    color: var(--secondary);
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.admin-pin-prompt p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+}
+
+.pin-input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.pin-input {
+    flex: 1;
+    text-align: center;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.pin-hint {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.pin-hint strong {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.btn-confirm-sm {
+    background: var(--secondary);
     color: #ffffff;
 }
 
@@ -806,6 +925,117 @@ body {
 .blocked-dates-list {
     list-style: none;
     margin-top: 10px;
+}
+
+/* =========================================================
+   WHATSAPP FLOATING BUTTON
+========================================================= */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 1.8rem;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    transition: var(--transition);
+    z-index: 999;
+}
+
+.whatsapp-float:hover {
+    background: #1ead50;
+    transform: scale(1.1);
+    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-float:active {
+    transform: scale(0.95);
+}
+
+/* =========================================================
+   BACKGROUND HAIR IMAGES - SEAMLESSLY INTEGRATED
+========================================================= */
+.bg-hair {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px);
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0) 85%);
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0) 85%);
+}
+
+.bg-hair-1 {
+    top: 20px;
+    right: 30px;
+    width: 380px;
+    height: 380px;
+    background-image: url('hair-1.jpg');
+    opacity: 0.38;
+    transform: rotate(-5deg);
+}
+
+.bg-hair-2 {
+    top: 50px;
+    left: 30px;
+    width: 350px;
+    height: 350px;
+    background-image: url('hair-2.jpg');
+    opacity: 0.35;
+    transform: rotate(5deg);
+}
+
+.bg-hair-3 {
+    bottom: 30px;
+    right: 40px;
+    width: 390px;
+    height: 390px;
+    background-image: url('hair-3.jpg');
+    opacity: 0.37;
+    transform: rotate(3deg);
+}
+
+.bg-hair-4 {
+    bottom: 50px;
+    left: 40px;
+    width: 370px;
+    height: 370px;
+    background-image: url('hair-4.jpg');
+    opacity: 0.33;
+    transform: rotate(-3deg);
+}
+
+@media (max-width: 768px) {
+    .bg-hair-1, .bg-hair-2, .bg-hair-3, .bg-hair-4 {
+        width: 220px;
+        height: 220px;
+        opacity: 0.28;
+    }
+
+    .bg-hair-1 { top: 15px; right: 15px; }
+    .bg-hair-2 { top: 30px; left: 15px; }
+    .bg-hair-3 { bottom: 30px; right: 20px; }
+    .bg-hair-4 { bottom: 40px; left: 20px; }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        bottom: 20px;
+        left: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.6rem;
+    }
 }
 
 .blocked-dates-list li {

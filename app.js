@@ -77,6 +77,9 @@ let selectedService = null;
 let selectedDate = '';
 let selectedTime = '';
 
+// Admin access control
+const ADMIN_SECRET = '100'; // Change this to any secret word you want
+
 // =========================================================
 // INITIALIZATION ON DOM READY
 // =========================================================
@@ -87,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initEventListeners();
     renderAppointmentsTable();
     renderBlockedDatesList();
+    checkAdminAccess();
 
     // Check if URL has service or date pre-set
     autoSelectFirstService();
@@ -465,7 +469,7 @@ function initEventListeners() {
         handleWhatsAppDirectBooking();
     });
 
-    // Admin Toggle
+    // Admin Toggle - Simple show/hide
     document.getElementById('toggleAdminBtn').addEventListener('click', () => {
         const body = document.getElementById('adminBody');
         const isHidden = body.style.display === 'none';
@@ -725,6 +729,35 @@ window.cancelAppointment = function(id) {
     }
 };
 
+// =========================================================
+// ADMIN PIN PROTECTION
+// =========================================================
+function checkAdminPin() {
+    const inputPin = document.getElementById('adminPinInput').value.trim();
+    const storedPin = localStorage.getItem(STORAGE_KEYS.ADMIN_PIN) || '1234'; // Default PIN: 1234
+
+    if (inputPin === storedPin) {
+        // Correct PIN - grant access
+        sessionStorage.setItem('admin_authenticated', 'true');
+        document.getElementById('adminPinPrompt').style.display = 'none';
+        document.getElementById('adminBody').style.display = 'block';
+        document.getElementById('adminPinInput').value = '';
+    } else {
+        // Wrong PIN
+        alert('❌ رمز الأمان غير صحيح! يرجى المحاولة مرة أخرى.');
+        document.getElementById('adminPinInput').value = '';
+        document.getElementById('adminPinInput').focus();
+    }
+}
+
+function updatePinDisplay() {
+    const currentPin = localStorage.getItem(STORAGE_KEYS.ADMIN_PIN) || '1234';
+    const display = document.getElementById('currentPinDisplay');
+    if (display) {
+        display.textContent = currentPin;
+    }
+}
+
 function renderBlockedDatesList() {
     const ul = document.getElementById('blockedDatesUl');
     if (!ul) return;
@@ -753,3 +786,19 @@ window.removeBlockedDate = function(idx) {
     renderBlockedDatesList();
     renderTimeSlots();
 };
+
+// =========================================================
+// ADMIN ACCESS CONTROL - SECRET URL
+// =========================================================
+function checkAdminAccess() {
+    // Check hash (e.g., https://yoursite.com/#100)
+    const hash = window.location.hash.substring(1); // Remove the # symbol
+
+    if (hash === ADMIN_SECRET) {
+        // Correct secret - show admin section
+        document.getElementById('adminSection').style.display = 'block';
+    } else {
+        // No secret or wrong secret - hide admin section completely
+        document.getElementById('adminSection').style.display = 'none';
+    }
+}
