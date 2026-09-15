@@ -6,44 +6,73 @@ const SUPABASE_ANON_KEY = 'sb_publishable_F-JpTw8nzT5teFTaiuV2ww_fcRcbfBM';
 
 // Initialize Supabase client
 const supabaseClient = (() => {
-    // Simple Supabase REST client
+    // Simple Supabase REST client with proper authentication
     return {
         async insert(table, data) {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Prefer': 'return=representation'
-                },
-                body: JSON.stringify(data)
-            });
-            if (!response.ok) {
-                console.error('Supabase insert error:', await response.text());
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Prefer': 'return=representation'
+                    },
+                    body: JSON.stringify(data)
+                });
+                const text = await response.text();
+                if (!response.ok) {
+                    console.error(`❌ Supabase insert failed (${response.status}):`, text);
+                    return null;
+                }
+                const result = JSON.parse(text);
+                console.log('✅ Successfully inserted to Supabase:', result);
+                return result;
+            } catch (error) {
+                console.error('❌ Supabase insert exception:', error);
                 return null;
             }
-            return await response.json();
         },
         async select(table) {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
-                headers: {
-                    'apikey': SUPABASE_ANON_KEY
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/${table}?select=*`, {
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    }
+                });
+                const text = await response.text();
+                if (!response.ok) {
+                    console.error(`❌ Supabase select failed (${response.status}):`, text);
+                    return [];
                 }
-            });
-            if (!response.ok) {
-                console.error('Supabase select error:', await response.text());
+                const result = JSON.parse(text);
+                console.log(`✅ Successfully loaded ${result.length} appointments from Supabase`);
+                return result;
+            } catch (error) {
+                console.error('❌ Supabase select exception:', error);
                 return [];
             }
-            return await response.json();
         },
         async delete(table, id) {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, {
-                method: 'DELETE',
-                headers: {
-                    'apikey': SUPABASE_ANON_KEY
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    }
+                });
+                if (!response.ok) {
+                    console.error(`❌ Supabase delete failed (${response.status}):`, await response.text());
+                    return false;
                 }
-            });
-            return response.ok;
+                console.log('✅ Successfully deleted from Supabase:', id);
+                return true;
+            } catch (error) {
+                console.error('❌ Supabase delete exception:', error);
+                return false;
+            }
         }
     };
 })();
