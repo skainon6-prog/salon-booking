@@ -1,4 +1,54 @@
 // =========================================================
+// SUPABASE CONFIGURATION
+// =========================================================
+const SUPABASE_URL = 'https://ihjcdtbswmfbsnzgerma.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_F-JpTw8nzT5teFTaiuV2ww_fcRcbfBM';
+
+// Initialize Supabase client
+const supabaseClient = (() => {
+    // Simple Supabase REST client
+    return {
+        async insert(table, data) {
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Prefer': 'return=representation'
+                },
+                body: JSON.stringify(data)
+            });
+            if (!response.ok) {
+                console.error('Supabase insert error:', await response.text());
+                return null;
+            }
+            return await response.json();
+        },
+        async select(table) {
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY
+                }
+            });
+            if (!response.ok) {
+                console.error('Supabase select error:', await response.text());
+                return [];
+            }
+            return await response.json();
+        },
+        async delete(table, id) {
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY
+                }
+            });
+            return response.ok;
+        }
+    };
+})();
+
+// =========================================================
 // SERVICES LIST (Bilingual Arabic / English)
 // =========================================================
 const SERVICES = [
@@ -83,8 +133,9 @@ const ADMIN_SECRET = '100'; // Change this to any secret word you want
 // =========================================================
 // INITIALIZATION ON DOM READY
 // =========================================================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     loadStoredData();
+    await loadAppointmentsFromSupabase();
     renderServicesGrid();
     initDatePicker();
     initEventListeners();
@@ -95,6 +146,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check if URL has service or date pre-set
     autoSelectFirstService();
 });
+
+// =========================================================
+// LOAD APPOINTMENTS FROM SUPABASE
+// =========================================================
+async function loadAppointmentsFromSupabase() {
+    try {
+        const data = await supabaseClient.select('appointments');
+        if (data && Array.isArray(data)) {
+            // Convert snake_case from database to camelCase for compatibility
+            appointments = data.map(app => ({
+                id: app.id,
+                clientName: app.client_name,
+                clientPhone: app.client_phone,
+                serviceId: app.service_id,
+                serviceName: app.service_name,
+                duration: app.duration,
+                date: app.date,
+                time: app.time,
+                notes: app.notes,
+                status: app.status,
+                createdAt: app.created_at
+            }));
+            console.log('✅ Loaded', appointments.length, 'appointments from Supabase');
+        }
+    } catch (error) {
+        console.warn('⚠️ Could not load from Supabase (will use local data):', error);
+        // Fall back to local storage appointments
+    }
+}
 
 // =========================================================
 // DATA PERSISTENCE (LocalStorage)
@@ -562,7 +642,7 @@ function initEventListeners() {
 // =========================================================
 let latestBooking = null;
 
-function handleBookingSubmission() {
+async function handleBookingSubmission() {
     if (!selectedService || !selectedDate || !selectedTime) {
         alert('يرجى التأكد من اختيار الخدمة والتاريخ والوقت المناسب.');
         return;
@@ -587,17 +667,27 @@ function handleBookingSubmission() {
 
     const booking = {
         id: 'HAIR-' + Date.now().toString().slice(-6),
-        clientName: name,
-        clientPhone: phone,
-        serviceId: selectedService.id,
-        serviceName: selectedService.name,
+        client_name: name,
+        client_phone: phone,
+        service_id: selectedService.id,
+        service_name: selectedService.name,
         duration: selectedService.duration,
         date: selectedDate,
         time: selectedTime,
         notes: notes,
         status: 'confirmed',
-        createdAt: new Date().toISOString()
+        created_at: new Date().toISOString()
     };
+
+    // Save to Supabase
+    try {
+        const result = await supabaseClient.insert('appointments', booking);
+        if (result) {
+            console.log('✅ Booking saved to Supabase:', result);
+        }
+    } catch (error) {
+        console.error('⚠️ Supabase error (will save locally):', error);
+    }
 
     appointments.push(booking);
     latestBooking = booking;
