@@ -164,7 +164,7 @@ const ADMIN_SECRET = '100'; // Change this to any secret word you want
 // =========================================================
 document.addEventListener('DOMContentLoaded', async () => {
     loadStoredData();
-    await loadAppointmentsFromSupabase();
+    await loadAppointmentsFromSupabase(); // Supabase overwrites localStorage
     renderServicesGrid();
     initDatePicker();
     initEventListeners();
@@ -853,12 +853,27 @@ function renderAppointmentsTable(searchQuery = '') {
     });
 }
 
-window.cancelAppointment = function(id) {
+window.cancelAppointment = async function(id) {
     if (confirm('هل أنتِ متأكدة من إلغاء وحذف هذا الموعد؟')) {
+        // Delete from Supabase first
+        const deleted = await supabaseClient.delete('appointments', id);
+        if (!deleted) {
+            alert('❌ خطأ في حذف الموعد من قاعدة البيانات. يرجى المحاولة مرة أخرى.');
+            return;
+        }
+
+        // Then delete from local array
         appointments = appointments.filter(a => a.id !== id);
+
+        // Save to localStorage to ensure the deletion persists locally too
         persistData();
+
+        // Refresh from Supabase to make sure we're in sync
+        await loadAppointmentsFromSupabase();
+
         renderAppointmentsTable();
         renderTimeSlots();
+        alert('✅ تم حذف الموعد بنجاح من السحابة والنظام المحلي');
     }
 };
 
