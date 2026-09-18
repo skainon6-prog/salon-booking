@@ -670,12 +670,59 @@ function initEventListeners() {
         alert('✅ تم تحديث المواعيد من قاعدة البيانات السحابية!');
     });
 
-    // Clear Cancelled/Old
-    document.getElementById('clearCancelledBtn').addEventListener('click', () => {
-        if (confirm('هل ترغبين في حذف المواعيد الملغاة أو القديمة لتنظيم الجدول؟')) {
-            appointments = appointments.filter(a => a.status === 'confirmed');
+    // Clear Cancelled/Old Past Appointments
+    document.getElementById('clearCancelledBtn').addEventListener('click', async () => {
+        const now = new Date();
+        const yyyy = now.getFullYear();
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const dd = String(now.getDate()).padStart(2, '0');
+        const todayStr = `${yyyy}-${mm}-${dd}`;
+        const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+        // Identify past appointments (past date, or today with past time)
+        const pastAppointments = appointments.filter(app => {
+            if (app.date < todayStr) return true;
+            if (app.date === todayStr && app.time) {
+                const [h, m] = app.time.split(':').map(Number);
+                const appMinutes = (h || 0) * 60 + (m || 0);
+                return appMinutes < currentMinutes;
+            }
+            return false;
+        });
+
+        if (pastAppointments.length === 0) {
+            alert('ℹ️ لا توجد مواعيد سابقة منتهية لحذفها.');
+            return;
+        }
+
+        if (confirm(`هل أنتِ متأكدة من حذف ${pastAppointments.length} موعد(مواعيد) سابقة منتهية من قاعدة البيانات؟`)) {
+            const btn = document.getElementById('clearCancelledBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الحذف...';
+
+            let deleteErrors = 0;
+            for (const app of pastAppointments) {
+                const success = await supabaseClient.delete('appointments', app.id);
+                if (!success) deleteErrors++;
+            }
+
+            // Keep only future/current appointments
+            const pastIds = new Set(pastAppointments.map(a => a.id));
+            appointments = appointments.filter(a => !pastIds.has(a.id));
             persistData();
+
+            await loadAppointmentsFromSupabase();
             renderAppointmentsTable();
+            renderTimeSlots();
+
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-trash-alt"></i> تنظيف المواعيد السابقة';
+
+            if (deleteErrors > 0) {
+                alert(`⚠️ تم حذف معظم المواعيد، ولكن فشل حذف ${deleteErrors} موعد.`);
+            } else {
+                alert(`✅ تم حذف ${pastAppointments.length} موعد سابقة بنجاح من السحابة.`);
+            }
         }
     });
 }
