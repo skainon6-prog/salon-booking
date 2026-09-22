@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صالون آية | Aya Salon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://gumroad.com/js/gumroad.js"></script>
+</head>
+<body>
+
+    <!-- Language / Theme Bar -->
+    <div class="top-announcement">
+        <span><i class="fas fa-sparkles"></i> استوديو منزلي خاص للسيدات • مواعيد خاصة وعناية احترافية</span>
+    </div>
+
+    <!-- Header / Hero Section -->
+    <header class="hero">
+        <!-- Background Hair Images (Decorative) - ALL 4 positioned in hero -->
+        <div class="bg-hair bg-hair-1"></div>
+        <div class="bg-hair bg-hair-2"></div>
+        <div class="bg-hair bg-hair-3"></div>
+        <div class="bg-hair bg-hair-4"></div>
+
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="brand-logo">
+                <div class="logo-text-wrap">
+                    <span class="logo-name">Aya</span>
+                    <span class="logo-sub">✦ صالون آية ✦</span>
+                </div>
+            </div>
+            <div class="brand-badge">
+                <i class="fas fa-gem"></i> Home Hair & Beauty Studio
+            </div>
+            <h1>صالون تجميل وصبغات الشعر</h1>
+            <p class="hero-desc">
+                خدمات صبغات شعر احترافية، ميش، بالياج، وتسريحات بأعلى جودة في أجواء منزلية هادئة وخاصة.
+            </p>
+            <div class="hero-highlights">
+                <div class="highlight-item"><i class="fas fa-palette"></i> <span>صبغات متقنة وألوان عصرية</span></div>
+                <div class="highlight-item"><i class="fas fa-cut"></i> <span>قص وتسريحات واستشوار</span></div>
+                <div class="highlight-item"><i class="fas fa-shield-heart"></i> <span>عناية وترطيب فائق للشعر</span></div>
+                <div class="highlight-item"><i class="fas fa-clock"></i> <span>حجز مسبق بمواعيد محددة</span></div>
+            </div>
+            <a href="#bookingSection" class="btn-hero-cta">
+                <i class="fas fa-calendar-alt"></i> احجزي موعدك الآن
+            </a>
+        </div>
+    </header>
+
+    <main class="container main-content" style="position: relative;">
+        <!-- Services Section -->
+        <section class="section" id="servicesSection">
+            <div class="section-title-wrap">
+                <span class="sub-label">قائمة الخدمات</span>
+                <h2>الخدمات المتاحة</h2>
+                <p>اضغطي على الخدمة المطلوبة لاختيارها وبدء الحجز</p>
+            </div>
+
+            <div class="services-grid" id="servicesGrid">
+                <!-- Injected via JavaScript -->
+            </div>
+        </section>
+
+        <!-- Digital Product Section -->
+        <section class="section" id="digitalProductSection" style="background: linear-gradient(135deg, rgba(184, 98, 125, 0.05) 0%, rgba(184, 98, 125, 0.1) 100%); border-radius: 16px; padding: 40px 24px; margin: 40px 0;">
+            <div class="section-title-wrap" style="text-align: center;">
+                <span class="sub-label">دليل رقمي حصري</span>
+                <h2>📘 دليل العناية بالشعر المصبوغ</h2>
+                <p style="max-width: 600px; margin: 0 auto 24px; color: #78716c;">دليل شامل للعناية بشعرك بعد الصبغة، نصائح احترافية، وروتين يومي للحفاظ على لون وصحة شعرك</p>
+            </div>
+            <div style="text-align: center; margin-top: 32px;">
+                <a href="https://ayasalon.gumroad.com/l/rrcftc" target="_blank" class="btn-hero-cta gumroad-button" id="gumroadBtn" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #b8627d 0%, #a04f68 100%); color: white; padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 18px; box-shadow: 0 4px 15px rgba(184, 98, 125, 0.3); transition: transform 0.2s, box-shadow 0.2s;">
+                    <i class="fas fa-book-open"></i>
+                    <span>احصلي على الدليل الآن</span>
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <p style="margin-top: 16px; font-size: 14px; color: #a8a29e;">
+                    <i class="fas fa-lock" style="color: #16a34a;"></i> دفع آمن عبر Gumroad • تحميل فوري
+                </p>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section class="section booking-container" id="bookingSection">
+            <div class="section-title-wrap">
+                <span class="sub-label">حجز فوري</span>
+                <h2>اختيار الموعد المناسب</h2>
+                <p>حددي الخدمة والتاريخ لتظهر لكِ الأوقات المتاحة</p>
+            </div>
+
+            <div class="booking-card">
+                <!-- Step 1: Select Service -->
+                <div class="step-box" id="step1Box">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h3>اختيار الخدمة (Service)</h3>
+                            <small>حددي الخدمة المطلوبة لمعرفة الوقت المقدر</small>
+                        </div>
+                    </div>
+                    <div class="input-wrapper">
+                        <select id="serviceSelect" class="form-control select-control">
+                            <option value="">-- اضغطي هنا لاختيار الخدمة --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Step 2: Choose Date -->
+                <div class="step-box" id="step2Box">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h3>اختيار اليوم (Date)</h3>
+                            <small>اختاري اليوم الذي يناسبكِ من التقويم</small>
+                        </div>
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="date" id="datePicker" class="form-control date-control" required>
+                    </div>
+                </div>
+
+                <!-- Step 3: Available Time Slots -->
+                <div class="step-box" id="step3Box">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h3>الأوقات المتاحة (Available Time Slots)</h3>
+                            <small>اضغطي على الوقت الذي يناسبكِ</small>
+                        </div>
+                    </div>
+
+                    <div class="slot-status-msg" id="slotStatusMsg">
+                        <i class="fas fa-info-circle"></i> يرجى اختيار الخدمة والتاريخ أولاً لعرض الأوقات المتاحة
+                    </div>
+
+                    <div class="slots-grid" id="slotsGrid">
+                        <!-- Slots dynamically rendered here -->
+                    </div>
+                </div>
+
+                <!-- Step 4: Client Info Form -->
+                <div class="step-box" id="step4Box" style="display: none;">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h3>بيانات الحجز والتأكيد (Client Information)</h3>
+                            <small>أدخلي اسمكِ ورقم هاتفكِ لتثبيت الموعد</small>
+                        </div>
+                    </div>
+
+                    <form id="bookingForm" class="booking-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="clientName"><i class="fas fa-user"></i> الاسم الكريم *</label>
+                                <input type="text" id="clientName" class="form-control" placeholder="مثال: سارة الأحمد" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="clientPhone"><i class="fas fa-phone-alt"></i> رقم الجوال / واتساب *</label>
+                                <input type="tel" id="clientPhone" class="form-control" placeholder="مثال: 05xxxxxxxx" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="clientEmail"><i class="fas fa-envelope"></i> البريد الإلكتروني (اختياري)</label>
+                                <input type="email" id="clientEmail" class="form-control" placeholder="مثال: sara@gmail.com">
+                                <small class="field-hint">لإرسال تأكيد الحجز تلقائيًا إلى بريدك</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="clientNotes"><i class="fas fa-comment-dots"></i> ملاحظات عن حالة الشعر أو الطلب (اختياري)</label>
+                            <textarea id="clientNotes" class="form-control" rows="3" placeholder="اكتبي أي تفاصيل إضافية (طول الشعر، لون الصبغة الحالي، أو اللون المطلوب)..."></textarea>
+                        </div>
+
+                        <!-- Live Summary Box -->
+                        <div class="appointment-summary" id="appointmentSummary">
+                            <h4><i class="fas fa-clipboard-check"></i> ملخص الموعد المحدد</h4>
+                            <div class="summary-grid">
+                                <div class="summary-item">
+                                    <span class="label">الخدمة:</span>
+                                    <span class="val" id="sumService">—</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">التاريخ:</span>
+                                    <span class="val" id="sumDate">—</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">الوقت:</span>
+                                    <span class="val" id="sumTime">—</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">المدة المقدرة:</span>
+                                    <span class="val" id="sumDuration">—</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-confirm" id="confirmBtn">
+                                <i class="fas fa-check-circle"></i> تأكيد الحجز في الموقع
+                            </button>
+                            <button type="button" class="btn-whatsapp-direct" id="whatsappBtn">
+                                <i class="fab fa-whatsapp"></i> إرسال وتأكيد عبر واتساب
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin / Mom's Management Dashboard (Hidden) -->
+        <section class="section admin-section" id="adminSection" style="display: none;">
+            <div class="admin-top-bar">
+                <div class="admin-title">
+                    <i class="fas fa-user-shield"></i>
+                    <div>
+                        <h3>لوحة تحكم وإدارة المواعيد</h3>
+                        <small>خاصة بصاحبة الصالون لمتابعة المواعيد وأيام الإجازة</small>
+                    </div>
+                </div>
+                <button id="toggleAdminBtn" class="btn-admin-toggle">
+                    <i class="fas fa-eye"></i> فتح لوحة المواعيد
+                </button>
+            </div>
+
+            <div class="admin-body" id="adminBody" style="display: none;">
+                <div class="admin-nav-tabs">
+                    <button class="admin-tab active" data-tab="listTab"><i class="fas fa-list-ul"></i> جدول المواعيد المحجوزة</button>
+                    <button class="admin-tab" data-tab="settingsTab"><i class="fas fa-sliders-h"></i> إعدادات الأوقات والإجازات</button>
+                </div>
+
+                <!-- Tab 1: Appointments List -->
+                <div class="tab-panel active" id="listTab">
+                    <div class="table-toolbar">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="adminSearchInput" placeholder="بحث بالاسم أو رقم الجوال..." class="form-control">
+                        </div>
+                        <button id="refreshBookingsBtn" class="btn-confirm-sm" style="margin-left: 10px;">
+                            <i class="fas fa-sync-alt"></i> تحديث المواعيد من السحابة
+                        </button>
+                        <button id="clearCancelledBtn" class="btn-danger-light">
+                            <i class="fas fa-trash-alt"></i> تنظيف المواعيد السابقة
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>العميلة</th>
+                                    <th>الجوال</th>
+                                    <th>الخدمة</th>
+                                    <th>التاريخ</th>
+                                    <th>الوقت</th>
+                                    <th>ملاحظات</th>
+                                    <th>الحالة</th>
+                                    <th>إجراء</th>
+                                </tr>
+                            </thead>
+                            <tbody id="appointmentsListBody">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Settings -->
+                <div class="tab-panel" id="settingsTab" style="display: none;">
+                    <div class="settings-cards-grid">
+                        <div class="setting-box">
+                            <h4><i class="fas fa-clock"></i> ساعات العمل اليومية</h4>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label><i class="far fa-clock"></i> وقت بدء العمل اليومي:</label>
+                                    <select id="setWorkStart" class="form-control select-control">
+                                        <option value="08:00">08:00 صباحاً (8:00 AM)</option>
+                                        <option value="09:00">09:00 صباحاً (9:00 AM)</option>
+                                        <option value="10:00" selected>10:00 صباحاً (10:00 AM)</option>
+                                        <option value="11:00">11:00 صباحاً (11:00 AM)</option>
+                                        <option value="12:00">12:00 ظهراً (12:00 PM)</option>
+                                        <option value="13:00">01:00 ظهراً (1:00 PM)</option>
+                                        <option value="14:00">02:00 بعد الظهر (2:00 PM)</option>
+                                        <option value="15:00">03:00 عصراً (3:00 PM)</option>
+                                        <option value="16:00">04:00 عصراً (4:00 PM)</option>
+                                        <option value="17:00">05:00 مساءً (5:00 PM)</option>
+                                        <option value="18:00">06:00 مساءً (6:00 PM)</option>
+                                        <option value="19:00">07:00 مساءً (7:00 PM)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fas fa-moon"></i> وقت انتهاء العمل اليومي:</label>
+                                    <select id="setWorkEnd" class="form-control select-control">
+                                        <option value="14:00">02:00 بعد الظهر (2:00 PM)</option>
+                                        <option value="15:00">03:00 عصراً (3:00 PM)</option>
+                                        <option value="16:00">04:00 عصراً (4:00 PM)</option>
+                                        <option value="17:00">05:00 مساءً (5:00 PM)</option>
+                                        <option value="18:00">06:00 مساءً (6:00 PM)</option>
+                                        <option value="19:00">07:00 مساءً (7:00 PM)</option>
+                                        <option value="20:00">08:00 مساءً (8:00 PM)</option>
+                                        <option value="21:00" selected>09:00 مساءً (9:00 PM)</option>
+                                        <option value="22:00">10:00 مساءً (10:00 PM)</option>
+                                        <option value="23:00">11:00 ليلاً (11:00 PM)</option>
+                                        <option value="24:00">12:00 منتصف الليل (12:00 AM)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>الفارق الزمني بين كل موعد وآخر:</label>
+                                <select id="setSlotInterval" class="form-control select-control">
+                                    <option value="30">كل 30 دقيقة (نصف ساعة)</option>
+                                    <option value="45">كل 45 دقيقة</option>
+                                    <option value="60" selected>كل 60 دقيقة (ساعة كاملة)</option>
+                                    <option value="90">كل 90 دقيقة (ساعة ونصف)</option>
+                                    <option value="120">كل 120 دقيقة (ساعتان)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fab fa-whatsapp"></i> رقم واتساب صاحبة الصالون لاستقبال الحجوزات:</label>
+                                <input type="text" id="setMomPhone" class="form-control" placeholder="مثال: 966501234567 (مع رمز الدولة)">
+                                <small style="color: #888;">سيتم توجيه رسائل الواتساب تلقائيًا إلى هذا الرقم</small>
+                            </div>
+                            <button id="saveScheduleBtn" class="btn-confirm-sm">
+                                <i class="fas fa-save"></i> حفظ ساعات العمل والرقم
+                            </button>
+                            <button onclick="console.log('Current settings:', JSON.parse(localStorage.getItem('home_salon_settings_v2') || '{}'))" class="btn-secondary-sm" style="margin-top: 5px;">
+                                <i class="fas fa-bug"></i> عرض الإعدادات المحفوظة
+                            </button>
+                        </div>
+
+                        <div class="setting-box">
+                            <h4><i class="fas fa-calendar-times"></i> حظر يوم كامل (إجازة / غير متاح)</h4>
+                            <div class="form-group">
+                                <label>اختاري اليوم لحظر الحجوزات فيه:</label>
+                                <input type="date" id="blockDateInput" class="form-control">
+                            </div>
+                            <button id="addBlockedDateBtn" class="btn-secondary-sm">
+                                <i class="fas fa-ban"></i> حظر هذا اليوم
+                            </button>
+
+                            <h5 style="margin-top: 20px; font-size: 0.95rem;">الأيام المحظورة حالياً:</h5>
+                            <ul id="blockedDatesUl" class="blocked-dates-list">
+                                <!-- Blocked dates rendered here -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Success Confirmation Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-card">
+            <div class="modal-badge-icon"><i class="fas fa-check"></i></div>
+            <h3>تم تأكيد موعدكِ بنجاح!</h3>
+            <p>يسعدنا استقبالكِ في الاستوديو المنزلي الخاص بنا.</p>
+
+            <div class="modal-receipt" id="modalReceiptDetails">
+                <!-- Receipt injected here -->
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-primary-modal" id="modalCloseBtn">تم، شكراً لكِ</button>
+                <button class="btn-whatsapp-modal" id="modalSendWhatsappBtn">
+                    <i class="fab fa-whatsapp"></i> فتح المحادثة على واتساب
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-brand">
+                <h4><i class="fas fa-heart"></i> صالون العناية والصبغات المنزلية</h4>
+                <p>نهتم بجمالكِ وتألق شعركِ بأفضل المنتجات وأحدث صيحات الصبغة والتسريح</p>
+            </div>
+            <div class="footer-copy">
+                &copy; 2026 جميع الحقوق محفوظة • استوديو تصفيف وصبغ الشعر للسيدات
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://api.whatsapp.com/send?phone=963982490737" target="_blank" class="whatsapp-float" title="تواصلي معنا عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

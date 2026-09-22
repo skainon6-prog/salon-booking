@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell([Convert]::ToBase64String\\([IO.File]::ReadAllBytes\\(\"c:\\\\Users\\\\1\\\\OneDrive\\\\الصور\\\\Aya logo.png\"\\)\\))",
+      "PowerShell($logoPath = 'C:\\\\Users\\\\1\\\\OneDrive\\\\الصور\\\\Aya logo.png'; $bytes = [System.IO.File]::ReadAllBytes\\($logoPath\\); $base64 = [Convert]::ToBase64String\\($bytes\\); $base64.Length)",
+      "PowerShell(Set-Content *)",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\1\\\\Hairdresser\\\\remove-bg.html\")",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\1\\\\Hairdresser\\\\index.html\")",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\1\\\\Hairdresser\\\\test-bg.html\")",
+      "Skill(update-config)",
+      "mcp__ide__executeCode",
+      "PowerShell(node --version)",
+      "PowerShell(npm list *)",
+      "WebFetch(domain:www.youtube.com)",
+      "WebFetch(domain:consent.youtube.com)",
+      "PowerShell($env:NODE_PATH = \"C:\\\\Users\\\\1\\\\AppData\\\\Roaming\\\\npm\\\\node_modules\"; node C:\\\\Users\\\\1\\\\Hairdresser\\\\.claude\\\\youtube-check.js)",
+      "WebSearch",
+      "PowerShell(ffmpeg *)",
+      "PowerShell($ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest -Uri \"https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip\" -OutFile \"$env:TEMP\\\\ffmpeg.zip\")",
+      "WebFetch(domain:cdnjs.com)",
+      "PowerShell(npm *)",
+      "PowerShell(where node; where python; gci \"$env:TEMP\\\\ffmpeg\" -Recurse -Filter \"ffmpeg.exe\" -ErrorAction SilentlyContinue | select -First 1)",
+      "PowerShell(git config *)"
+    ]
+  }
+}

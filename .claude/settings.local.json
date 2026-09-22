@@ -1,0 +1,21 @@
+
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(node -v)",
+      "PowerShell(& \"C:\\\\Program Files \\(x86\\)\\\\Microsoft\\\\Edge\\\\Application\\\\msedge.exe\" --headless --disable-gpu --print-to-pdf=\"C:\\\\Users\\\\1\\\\Downloads\\\\ملخص_الأحياء_Chapter_2_Cell_Structure.pdf\" \"C:\\\\Users\\\\1\\\\Downloads\\\\ملخص_الأحياء_Chapter_2_Cell_Structure.html\")",
+      "PowerShell(& \"C:\\\\Program Files \\(x86\\)\\\\Microsoft\\\\Edge\\\\Application\\\\msedge.exe\" --headless --disable-gpu --print-to-pdf=\"C:\\\\Users\\\\1\\\\Downloads\\\\Chapter_2_Cell_Structure_BIOL107_Summary.pdf\" \"C:\\\\Users\\\\1\\\\Downloads\\\\Chapter_2_BIOL107_Summary_Print.html\")",
+      "PowerShell(& \"C:\\\\Program Files \\(x86\\)\\\\Microsoft\\\\Edge\\\\Application\\\\msedge.exe\" --headless --disable-gpu --print-to-pdf=\"C:\\\\Users\\\\1\\\\Downloads\\\\Chapter_2_Cell_Structure_BIOL107_Summary.pdf\" \"C:\\\\Users\\\\1\\\\Downloads\\\\Chapter_2_Simplified_Summary_Template.html\")",
+      "PowerShell(& \"C:\\\\Program Files \\(x86\\)\\\\Microsoft\\\\Edge\\\\Application\\\\msedge.exe\" --headless --disable-gpu --print-to-pdf=\"C:\\\\Users\\\\1\\\\Downloads\\\\Chapter_2_Cell_Structure_BIOL107_Summary.pdf\" \"C:\\\\Users\\\\1\\\\Downloads\\\\Chapter_2_Full_Questions_Summary.html\")",
+      "PowerShell(npm list *)",
+      "PowerShell(python -m pip install Pillow)",
+      "PowerShell(npm install *)",
+      "PowerShell(node C:\\\\Users\\\\1\\\\blook-blast\\\\composite_image.js)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\1\\\\blook-blast\\\\index.html\")",
+      "PowerShell(\\(Get-Command git -ErrorAction SilentlyContinue\\).Source; \\(Get-Command gh -ErrorAction SilentlyContinue\\).Source)",
+      "PowerShell(Stop-Process *)",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\(\"C:\\\\Users\\\\1\\\\blook-blast\\\\logo.png\"\\); Write-Output \"Logo dimensions: $\\($img.Width\\)x$\\($img.Height\\) pixels\"; $img.Dispose\\(\\))"
+    ]
+  }
+}
