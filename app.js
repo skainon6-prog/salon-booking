@@ -760,10 +760,12 @@ async function handleBookingSubmission() {
         id: 'HAIR-' + Date.now().toString().slice(-6),
         client_name: name,
         client_phone: phone,
-        client_email: email,  // Add email for email function
+        client_email: email,
         service_id: selectedService.id,
         service_name: selectedService.name,
         duration: selectedService.duration,
+        appointment_date: selectedDate,  // Field name for Edge Function
+        appointment_time: selectedTime,  // Field name for Edge Function
         date: selectedDate,
         time: selectedTime,
         notes: notes,
